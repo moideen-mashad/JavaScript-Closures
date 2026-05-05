@@ -43,21 +43,17 @@ Even after the people walk away and the scenery changes (the outer function fini
 
 ```mermaid
 graph LR
-    subgraph "1. Creation"
-        A["createCounter() called"] --> B["'count' is born"]
-    end
+    A["Line 12: createCounter()"] --> B["'count = 0' born in Closure Scope"]
+    B --> C["Call myCounterA()"]
+    C --> D["Count: 1"]
+    D --> E["Call myCounterA()"]
+    E --> F["Count: 2"]
+    F --> G["Call myCounterA()"]
+    G --> H["Count: 3"]
 
-    subgraph "2. Preservation"
-        B --> C["'count' is saved in Closure Scope"]
-    end
-
-    subgraph "3. Execution"
-        C --> D["myCounterA() called"]
-        D --> E["'count' is updated"]
-    end
-
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px
 ```
+
 
 
 ---
