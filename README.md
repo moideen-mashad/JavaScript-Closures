@@ -44,20 +44,21 @@ Even after the people walk away and the scenery changes (the outer function fini
 ```mermaid
 graph TD
     subgraph "The Parent Function (The School)"
-        A[Variable: count = 0]
+        A["Variable: count = 0"]
     end
 
     subgraph "The Inner Function (The Student)"
-        B[Function: addOne()]
+        B["Function: addOne()"]
     end
 
-    A -.->|Captured in| C(The Backpack / Closure)
-    B -->|Carries| C
+    A -.->|"Captured in"| C("The Backpack / Closure")
+    B -->|"Carries"| C
     
-    C --> D{Is Parent Function Finished?}
-    D -->|YES| E[Parent Function is GONE]
-    E --> F[Inner Function still uses the Backpack!]
+    C --> D{"Is Parent Function Finished?"}
+    D -->|"YES"| E["Parent Function is GONE"]
+    E --> F["Inner Function still uses the Backpack!"]
 ```
+
 
 
 ---
