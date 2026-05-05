@@ -43,22 +43,37 @@ Even after the people walk away and the scenery changes (the outer function fini
 
 ```mermaid
 graph TD
-    subgraph "The Parent Function (The School)"
+    subgraph "Function: createCounter('A')"
         A["Variable: count = 0"]
     end
 
-    subgraph "The Inner Function (The Student)"
-        B["Function: addOne()"]
+    subgraph "Function: createCounter('B')"
+        B["Variable: count = 0"]
     end
 
-    A -.->|"Captured in"| C("The Backpack / Closure")
-    B -->|"Carries"| C
-    
-    C --> D{"Is Parent Function Finished?"}
-    D -->|"YES"| E["Parent Function is GONE"]
-    E --> F["Inner Function still uses the Backpack!"]
+    A -.->|"Locked in"| C("Backpack A")
+    B -.->|"Locked in"| D("Backpack B")
+
+    C --> E["myCounterA() uses Backpack A"]
+    D --> F["myCounterB() uses Backpack B"]
+
+    E --> G["Independent State!"]
+    F --> G
 ```
+
 ---
+
+## 4. How it Works (Walkthrough)
+
+Using the diagram above, here is exactly what happens in your `script.js`:
+
+1.  **Line 12 & 13:** You call `createCounter()` twice. Each call creates a **new environment** with its own `count` variable.
+2.  **Backpack A:** Created for `myCounterA`. It starts at 0.
+3.  **Backpack B:** Created for `myCounterB`. It also starts at 0, but it is **different** from A.
+4.  **Persistent Memory:** When you call `myCounterA()` (Line 15), it only looks inside **Backpack A**. It doesn't even know Backpack B exists!
+
+---
+
 
 ## 5. Why do we need this?
 
