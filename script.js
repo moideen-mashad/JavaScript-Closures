@@ -1,43 +1,26 @@
 /**
- * JavaScript Closures | Pure Logic Demonstration
- * 
- * A closure is the combination of a function bundled together (enclosed) with 
- * references to its surrounding state (the lexical environment).
+ * Example 1: Simple Counter (The "Backpack" analogy)
  */
-
-/**
- * 1. THE CLOSURE FACTORY
- * This function returns a new function. 
- * The inner function "closes over" the 'count' variable.
- */
-function createCounter(counterName) {
-    let count = 0; // Private variable trapped in the closure
-
-    // This is the closure function
-    return function() {
+function createCounter(name) {
+    let count = 0;
+    return function () {
         count++;
-        console.log(`[${counterName}] Current Count: ${count}`);
+        console.log(`[${name}] Count: ${count}`);
     };
 }
 
-/**
- * 2. CREATING INDEPENDENT INSTANCES
- * Even though they come from the same factory, they each carry 
- * their own unique "backpack" (scope).
- */
-const counterA = createCounter("Counter A");
-const counterB = createCounter("Counter B");
+const myCounterA = createCounter("Counter A");
+const myCounterB = createCounter("Counter B");
 
-// 3. TESTING PERSISTENT MEMORY
-console.log("--- Starting Closure Test ---");
+myCounterA(); // value of counterA is 1
+myCounterA(); // value of counterA is 2
+myCounterA(); // value of counterA is 3
 
-counterA(); // Counter A: 1
-counterA(); // Counter A: 2
-counterA(); // Counter A: 3
+// Counter B will start from 0 because it has its own closure
+myCounterB(); // value of counterB is 1
 
-counterB(); // Counter B: 1 (Starts at 1 because it's a separate closure!)
-counterB(); // Counter B: 2
+// Counter A will continue from 3 because it has its own closure
+myCounterA(); // value of counterA is 4
 
-counterA(); // Counter A: 4 (Remembers its previous state!)
-
-console.log("--- Test Complete ---");
+// Counter B will continue from 1 because it has its own closure
+myCounterB(); // value of counterB is 2

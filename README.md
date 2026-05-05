@@ -63,17 +63,32 @@ graph TD
 
 ---
 
-## 5. Why do we need this?
+## 5. Adding .reduce() to the Mix
 
-Closures are the secret sauce behind many advanced JS features:
+We can combine closures with array methods like `.reduce()` to create powerful tools.
 
-1.  **Data Privacy:** You can create "private" variables that can't be touched from the outside.
-2.  **State Management:** Keeping track of data (like a counter) without using global variables that might get messy.
-3.  **Function Factories:** Creating many specialized functions from one template.
+### The Snowball Analogy (Reduce)
+Think of `.reduce()` like rolling a **snowball** down a hill:
+1.  **The Accumulator:** The snowball itself.
+2.  **The Current Value:** The new snow it picks up as it rolls.
+3.  **The Result:** One big giant snowball at the bottom (a single value).
+
+### How it works in our Script:
+In our `createCalculator` example:
+*   The **Closure** keeps our list of numbers private (the "backpack").
+*   The **Reduce** method takes that list and "rolls" it into a single total sum.
+
+```javascript
+// A quick look at the logic:
+const total = numbers.reduce((accumulator, current) => {
+    return accumulator + current;
+}, 0);
+```
 
 ---
 
-## 6. How to test it out:
+## 6. Why do we need this?
+...
 
 1. Open `index.html` in your browser.
 2. Open your Developer Tools (**Right Click -> Inspect**).
