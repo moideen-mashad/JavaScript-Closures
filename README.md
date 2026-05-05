@@ -42,22 +42,23 @@ Even after the people walk away and the scenery changes (the outer function fini
 ## 4. How it Works (Logic Flow)
 
 ```mermaid
-graph TD
+graph LR
     subgraph "1. Creation"
-        A["Call createCounter()"] --> B["'count' variable is born"]
+        A["createCounter() called"] --> B["'count' is born"]
     end
 
     subgraph "2. Preservation"
-        B --> C["Function finishes but 'count' is saved in a Closure Scope"]
+        B --> C["'count' is saved in Closure Scope"]
     end
 
     subgraph "3. Execution"
-        C --> D["Call myCounterA()"]
-        D --> E["Accesses and updates the saved 'count'"]
+        C --> D["myCounterA() called"]
+        D --> E["'count' is updated"]
     end
 
     style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
 ```
+
 
 ---
 
