@@ -42,31 +42,34 @@ Even after the people walk away and the scenery changes (the outer function fini
 ## 4. How it Works (Logic Flow)
 
 ```mermaid
-graph LR
-    Start(("Start")) --> Create["createCounter()"]
-    Create --> Scope[["Closure Scope: count=0"]]
-    
+graph TD
+    subgraph Setup ["Part 1: The Setup"]
+        direction LR
+        Start(("Start")) --> Create["createCounter()"]
+        Create --> Scope[["Closure Scope: count=0"]]
+    end
+
+    Setup --> Execution
+
+    subgraph Execution ["Part 2: Persistent Access"]
+        direction LR
+        ScopeRef[["Closure Scope"]] --> Call1["myCounterA()"]
+        Call1 --> Res1("Count: 1")
+        Res1 --> Call2["myCounterA()"]
+        Call2 --> Res2("Count: 2")
+        Res2 --> Call3["myCounterA()"]
+        Call3 --> Res3("Count: 3")
+    end
+
+    %% Styling
     style Start fill:#f5f5f5,stroke:#333
     style Scope fill:#fff3e0,stroke:#e65100,stroke-width:3px
-```
-
-### Flow B: Persistent Access (The Calls)
-```mermaid
-graph LR
-    Scope[["Closure Scope"]] --> Call1["myCounterA()"]
-    Call1 --> Res1("Count: 1")
-    
-    Res1 --> Call2["myCounterA()"]
-    Call2 --> Res2("Count: 2")
-    
-    Res2 --> Call3["myCounterA()"]
-    Call3 --> Res3("Count: 3")
-
-    style Scope fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    style ScopeRef fill:#fff3e0,stroke:#e65100,stroke-width:3px
     style Res1 fill:#e1f5fe,stroke:#01579b
     style Res2 fill:#e1f5fe,stroke:#01579b
     style Res3 fill:#e1f5fe,stroke:#01579b
 ```
+
 
 
 
