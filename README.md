@@ -43,18 +43,25 @@ Even after the people walk away and the scenery changes (the outer function fini
 
 ```mermaid
 graph TD
-    A["1. SETUP: Call createCounter()"] --> B["2. CLOSE: Function finishes"]
-    B --> C["3. SCOPE: 'count' variable is saved in the Closure Scope"]
-    C --> D["4. ACTION: Call myCounterA()"]
-    D --> E["5. ACCESS: It accesses 'count' from the Closure Scope"]
-    E --> F["6. RESULT: count becomes 1, then 2, then 3!"]
+    subgraph "1. Creation"
+        A["Call createCounter()"] --> B["'count' variable is born"]
+    end
 
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:4px
+    subgraph "2. Preservation"
+        B --> C["Function finishes but 'count' is saved in a Closure Scope"]
+    end
+
+    subgraph "3. Execution"
+        C --> D["Call myCounterA()"]
+        D --> E["Accesses and updates the saved 'count'"]
+    end
+
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
 ```
 
 ---
 
-## 4. How it Works (Walkthrough)
+## 5. How it Works (Walkthrough)
 
 Here is exactly what happens in your `script.js`:
 
@@ -65,7 +72,7 @@ Here is exactly what happens in your `script.js`:
 
 ---
 
-## 5. Why do we need this?
+## 6. Why do we need this?
 
 Closures are the secret sauce behind many advanced JS features:
 
@@ -73,7 +80,7 @@ Closures are the secret sauce behind many advanced JS features:
 2.  **State Management:** Keeping track of data (like a counter) without using global variables that might get messy.
 3.  **Function Factories:** Creating many specialized functions from one template.
 
-## 6. How to test it out:
+## 7. How to test it out:
 
 1. Open `index.html` in your browser.
 2. Open your Developer Tools (**Right Click -> Inspect**).
@@ -82,7 +89,7 @@ Closures are the secret sauce behind many advanced JS features:
 
 ---
 
-## 7. Beginner-Friendly Resources for Closures
+## 8. Beginner-Friendly Resources for Closures
 
 Ready to become a JavaScript Master? Explore these resources:
 
